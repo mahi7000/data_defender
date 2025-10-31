@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct4vek1tf61qr"]
+
+[ext_resource type="Script" uid="uid://b5d5p85kiyf6y" path="res://scenes/entities/enemies/virus.tscn.gd" id="1_mafmh"]
+
+[sub_resource type="Gradient" id="Gradient_e3efu"]
+offsets = PackedFloat32Array(0.0116959065, 0.023391813, 0.03508772)
+colors = PackedColorArray(0.9834308, 0.025097467, 0.025097467, 1, 1, 1, 1, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mafmh"]
+gradient = SubResource("Gradient_e3efu")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hobfn"]
+
+[node name="Virus_tscn" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_mafmh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 1)
+texture = SubResource("GradientTexture2D_mafmh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hobfn")
