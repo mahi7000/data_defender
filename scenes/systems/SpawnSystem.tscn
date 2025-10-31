@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsrf47mlco676"]
+
+[ext_resource type="Script" path="res://scripts/systems/SpawnSystem.gd" id="1_x7fk8"]
+
+[node name="SpawnSystem" type="Node2D"]
+script = ExtResource("1_x7fk8")
+spawn_area = null
+max_enemies = null

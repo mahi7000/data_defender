@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0grolb0880gb"]
+
+[ext_resource type="Script" path="res://scripts/ui/UIManager.gd" id="1_43p7p"]
+
+[node name="UiManager" type="CanvasLayer"]
+script = ExtResource("1_43p7p")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreContainer" type="Panel" parent="HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreIcon" type="TextureRect" parent="HUD/ScoreContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="HUD/ScoreContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="LivesContainer" type="Panel" parent="HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LivesIcon" type="TextureRect" parent="HUD/LivesContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LivesLabel" type="Label" parent="HUD/LivesContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="LevelContainer" type="Panel" parent="HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LevelIcon" type="TextureRect" parent="HUD/LevelContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LevelLabel" type="Label" parent="HUD/LevelContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="MessageLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="GameOverScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="GameOverScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FinalScoreLabel" type="Label" parent="GameOverScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HighScoreLabel" type="Label" parent="GameOverScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="GameOverScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
