@@ -4,5 +4,3 @@
 
 [node name="SpawnSystem" type="Node2D"]
 script = ExtResource("1_x7fk8")
-spawn_area = null
-max_enemies = null
