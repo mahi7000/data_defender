@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsl60smnhonre"]
+
+[ext_resource type="Script" path="res://scripts/world/Background.gd" id="1_bfx7s"]
+
+[node name="Background" type="ColorRect"]
+script = ExtResource("1_bfx7s")
