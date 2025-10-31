@@ -1,30 +1,36 @@
 extends CharacterBody2D
 
 @export var speed: float = 300.0
-@export var bullet_scene: PackedScene
-
-@onready var gun_tip = $GunTip
+@export var bullet_scene: PackedScene = preload("res://scenes/entities/bullets/Bullet.tscn")
+@onready var bullet_spawn = $BulletSpawnPoint
+# @onready var gun_tip = $GunTip
 
 func _ready():
-	# Placeholder - will be implemented by Coder B
-	pass
+	EventBus.player=self
+	if bullet_spawn == null:
+		print("⚠️ BulletSpawnPoint not found!")
+#	if gun_tip == null:
+	#	print("⚠️ GunTip not found!")
 
-func _physics_process(delta):
-	# Placeholder movement
+func _physics_process(_delta):
+	# 1️⃣ Movement
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_dir * speed
 	move_and_slide()
-	
-	# Rotate to face mouse
+
+	# 2️⃣ Rotate to face mouse
 	look_at(get_global_mouse_position())
-	
-	# Shooting
-	if Input.is_action_just_pressed("shoot"):
+
+func _input(event):
+	# 3️⃣ Shooting with left mouse click
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		shoot()
 
 func shoot():
-	if bullet_scene:
+	if bullet_scene and bullet_spawn:
 		var bullet = bullet_scene.instantiate()
-		bullet.position = gun_tip.global_position
-		bullet.rotation = global_rotation
-		get_parent().add_child(bullet)
+		bullet.global_position = bullet_spawn.global_position
+		bullet.direction = (get_global_mouse_position() - global_position).normalized()
+		get_tree().current_scene.add_child(bullet)
+	else:
+		print("⚠️ Bullet scene or spawn point missing!")

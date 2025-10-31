@@ -1,5 +1,5 @@
 extends Node
-
+var player: CharacterBody2D
 # Player signals
 signal player_damaged(damage_amount)
 signal player_died
