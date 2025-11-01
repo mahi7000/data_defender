@@ -9,6 +9,7 @@ func _ready():
 	EventBus.player=self
 	if bullet_spawn == null:
 		print("⚠️ BulletSpawnPoint not found!")
+	add_to_group("player")
 #	if gun_tip == null:
 	#	print("⚠️ GunTip not found!")
 
@@ -34,3 +35,6 @@ func shoot():
 		get_tree().current_scene.add_child(bullet)
 	else:
 		print("⚠️ Bullet scene or spawn point missing!")
+		
+func take_damage(amount: int):
+	print("Player taking damage: ", amount)

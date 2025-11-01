@@ -2,57 +2,46 @@ extends Node2D
 
 @onready var ui_manager = $UIManager
 @onready var background = $Background
+@onready var player = $Player
+@onready var spawn_manager = $SpawnSystem  # Add SpawnManager node to your scene
 
 func _ready():
 	# Start with main menu state
-	setup_test_environment()
+	setup_game_environment()
 
-func setup_test_environment():
-	# Add some test elements to make the scene look alive
-	add_test_entities()
+func setup_game_environment():
+	# Clear any test entities
+	clear_test_entities()
+	
+	# Setup player
+	setup_player()
+	
+	# Start enemy spawning through spawn manager
+	if spawn_manager:
+		print("Spawn manager ready - starting game")
+	else:
+		print("⚠️ SpawnManager not found!")
 
-func add_test_entities():
-	# Add some placeholder entities to see how they'll look with UI
-	for i in range(5):
-		var enemy_marker = create_entity_marker("enemy", Color.RED)
-		enemy_marker.position = Vector2(100 + i * 100, 200)
-		add_child(enemy_marker)
-	
-	for i in range(3):
-		var file_marker = create_entity_marker("file", Color.WHITE)
-		file_marker.position = Vector2(150 + i * 120, 300)
-		add_child(file_marker)
+func setup_player():
+	if player:
+		# Configure player properties
+		player.speed = 300.0
+		# Make sure the player is visible and active
+		player.show()
+		player.set_process(true)
+		player.set_physics_process(true)
+		player.set_process_input(true)
+		
+		# Position player in a safe spot
+		player.position = Vector2(400, 300)
+	else:
+		print("⚠️ Player node not found in main scene!")
 
-func create_entity_marker(type: String, color: Color) -> Node2D:
-	var marker = Node2D.new()
-	var sprite = Sprite2D.new()
-	
-	# Create a simple circle texture for placeholder
-	var texture = create_circle_texture(16, color)
-	sprite.texture = texture
-	marker.add_child(sprite)
-	
-	# Add a label
-	var label = Label.new()
-	label.text = type
-	label.position = Vector2(-15, 20)
-	label.add_theme_color_override("font_color", color)
-	marker.add_child(label)
-	
-	return marker
-
-func create_circle_texture(radius: int, color: Color) -> Texture2D:
-	var image = Image.create(radius * 2, radius * 2, false, Image.FORMAT_RGBA8)
-	image.fill(Color.TRANSPARENT)
-	
-	var center = Vector2(radius, radius)
-	for x in range(radius * 2):
-		for y in range(radius * 2):
-			var pos = Vector2(x, y)
-			if pos.distance_to(center) <= radius:
-				image.set_pixel(x, y, color)
-	
-	return ImageTexture.create_from_image(image)
+func clear_test_entities():
+	# Remove any test markers
+	for child in get_children():
+		if "enemy" in child.name.to_lower() or "file" in child.name.to_lower() or "marker" in child.name.to_lower():
+			child.queue_free()
 
 func _input(event):
 	# Test controls to simulate game flow

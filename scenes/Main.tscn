@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://5umik383be0c"]
+[gd_scene load_steps=6 format=3 uid="uid://5umik383be0c"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_7da1n"]
 [ext_resource type="PackedScene" uid="uid://dsl60smnhonre" path="res://scenes/world/Background.tscn" id="2_7bcnb"]
 [ext_resource type="PackedScene" uid="uid://c0grolb0880gb" path="res://scenes/ui/UIManager.tscn" id="3_r2204"]
+[ext_resource type="PackedScene" uid="uid://e43kmif41e6v" path="res://scenes/entities/player/Player.tscn" id="4_u8604"]
+[ext_resource type="PackedScene" uid="uid://bsrf47mlco676" path="res://scenes/systems/SpawnSystem.tscn" id="5_mfy71"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7da1n")
@@ -10,3 +12,8 @@ script = ExtResource("1_7da1n")
 [node name="Background" parent="." instance=ExtResource("2_7bcnb")]
 
 [node name="UIManager" parent="." instance=ExtResource("3_r2204")]
+
+[node name="Player" parent="." instance=ExtResource("4_u8604")]
+
+[node name="SpawnSystem" parent="." instance=ExtResource("5_mfy71")]
+max_enemies = 10
